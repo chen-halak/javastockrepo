@@ -12,7 +12,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Chen_halak</servlet-name>
 		<url-pattern>/chen_halak</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Ex3</servlet-name>
+		<servlet-class>com.myorg.javacourse.Ex3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Ex3</servlet-name>
+		<url-pattern>/Ex3</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 </web-app>
+
