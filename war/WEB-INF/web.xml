@@ -20,9 +20,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Ex3</servlet-name>
 		<url-pattern>/Ex3</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>StockDetailsServelt</servlet-name>
+		<servlet-class>com.myorg.javacourse.StockDetailsServelt</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StockDetailsServelt</servlet-name>
+		<url-pattern>/stockdetails</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 </web-app>
+
 
