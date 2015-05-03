@@ -1,7 +1,10 @@
 package com.myorg.javacourse;
 
 import java.io.IOException;
+
 import javax.servlet.http.*;
+
+import com.myorg.javacourse.model.Stock;
 
 @SuppressWarnings("serial")
 public class StockDetailsServelt extends HttpServlet {

@@ -1,4 +1,4 @@
-package com.myorg.javacourse;
+package com.myorg.javacourse.model;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,6 +9,23 @@ public class Stock {
 	private String symbol;
 	private float ask, bid;
 	private Date date;
+
+	public Stock(Stock stock){
+		this(stock.symbol,stock.ask,stock.bid,stock.date);
+
+	}	
+
+
+	public Stock(String symbol, float ask, float bid, Date date) {
+		this.symbol = symbol;
+		this.ask = ask;
+		this.bid = bid;
+		this.date = date;
+	}
+
+	public Stock() {
+	}
+
 
 	public String getSymbol() {
 		return symbol;
@@ -56,7 +73,8 @@ public class Stock {
 		DateFormat format = new SimpleDateFormat("MM/d/yyyy");
 		String stockDate = format.format(getDate());
 		return "<b>Stocksymbol</b>:" + getSymbol() + ", <b>Ask</b>:" + getAsk()
-				+ ", <b>Bid</b>:" + getBid() + ", <b>Date</b>:" + stockDate + "<BR>";
+				+ ", <b>Bid</b>:" + getBid() + ", <b>Date</b>:" + stockDate
+				+ "<BR>";
 	}
 
 }

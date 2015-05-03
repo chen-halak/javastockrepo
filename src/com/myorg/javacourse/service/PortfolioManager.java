@@ -1,6 +1,6 @@
 package com.myorg.javacourse.service;
 
-import com.myorg.javacourse.Stock;
+import com.myorg.javacourse.model.Stock;
 import com.myorg.javacourse.model.Portfolio;
 /**
  * An instance of this class represents portfolio
@@ -14,6 +14,7 @@ public class PortfolioManager {
 	 */
 	public Portfolio getPortfolio() {
 		Portfolio portfolio=new Portfolio();
+		portfolio.setTitle("Portpolio # 1");
 		Stock PIH = new Stock();
 		Stock AAL = new Stock();
 		Stock CAAS = new Stock();
