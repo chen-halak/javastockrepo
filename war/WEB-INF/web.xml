@@ -5,30 +5,6 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>Chen_halak</servlet-name>
-		<servlet-class>com.myorg.javacourse.Chen_halakServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Chen_halak</servlet-name>
-		<url-pattern>/chen_halak</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Ex3</servlet-name>
-		<servlet-class>com.myorg.javacourse.Ex3</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Ex3</servlet-name>
-		<url-pattern>/Ex3</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>StockDetailsServelt</servlet-name>
-		<servlet-class>com.myorg.javacourse.StockDetailsServelt</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>StockDetailsServelt</servlet-name>
-		<url-pattern>/stockdetails</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>PortfolioServlet</servlet-name>
 		<servlet-class>com.myorg.javacourse.servelt.PortfolioServlet</servlet-class>
 	</servlet>

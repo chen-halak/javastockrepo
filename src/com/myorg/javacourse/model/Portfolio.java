@@ -3,7 +3,9 @@ package com.myorg.javacourse.model;
 /**
  * An instance of this class represent portfilo-manage stocks on one place
  * 
- * @author Chen Halak since JDK 1.7 4/23/15
+ * @author Chen Halak 
+ * since JDK 1.7
+ *  4/23/15
  */
 public class Portfolio {
 	/**
@@ -30,12 +32,19 @@ public class Portfolio {
 	private int stockQuantity;
 
 	/**
-	 * create instance of stocks returned not simplified
+	 * create instance of stocks 
+	 * returned not simplified
 	 */
 	public Portfolio() {
 		stocks = new Stock[MAX_PORTFOLIO_SIZE];
 	}
-
+/**
+ * returns instance of portfolio with the parameters below
+ * @param title
+ * @param stocks
+ * @param portfolioSize
+ */
+	
 	public Portfolio(String title, Stock[] stocks, int portfolioSize) {
 		this();
 		this.title = new String(title);
@@ -45,9 +54,37 @@ public class Portfolio {
 			addStock(x);
 		}
 	}
-
+/**
+ *  @param portfolio -copy this parameter
+ *  returns instance of the same portfolio that given as parameter
+ */
 	public Portfolio(Portfolio portfolio) {
-		this(portfolio.title, portfolio.stocks, portfolio.portfolioSize);
+		this(new String(portfolio.getTitle()), portfolio.getStocks(), portfolio
+				.getPortfolioSize());
+	}
+
+	public int getPortfolioSize() {
+		return portfolioSize;
+	}
+
+	public void setPortfolioSize(int portfolioSize) {
+		this.portfolioSize = portfolioSize;
+	}
+
+	public int getRecommendation() {
+		return recommendation;
+	}
+
+	public void setRecommendation(int recommendation) {
+		this.recommendation = recommendation;
+	}
+
+	public int getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
 	}
 
 	public String getTitle() {
@@ -67,9 +104,8 @@ public class Portfolio {
 
 	/**
 	 * add stock to the portfolio returned not simplified
-	 * 
 	 * @param stock
-	 *            the stock that added to the portfolio
+	 *  the stock that added to the portfolio
 	 */
 	public void addStock(Stock stock) {
 		if (portfolioSize < MAX_PORTFOLIO_SIZE) {
@@ -79,7 +115,10 @@ public class Portfolio {
 			System.out.println("lack of memory");
 		}
 	}
-
+/**
+ * returned is not simplified 
+ * remove the first stock from portfolio
+ */
 	public void removeFirstStock() {
 		Stock[] oldStocks = stocks;
 		int oldPortfolioSize = portfolioSize;
@@ -92,14 +131,17 @@ public class Portfolio {
 		}
 
 	}
-
+/**
+ * returned is not simplified 
+ * create empty fortfolio
+ */
 	private void removeAllStocks() {
 		stocks = new Stock[MAX_PORTFOLIO_SIZE];
 		portfolioSize = 0;
 	}
 
 	/**
-	 * @return string with portfolio html code
+	 * @returns string with portfolio html code
 	 */
 	public String getHtmlString() {
 		String result = "<h1>" + getTitle() + "</h1>";
@@ -108,7 +150,9 @@ public class Portfolio {
 		}
 		return result;
 	}
-
+/**
+ * returns the last stock from the portfolio
+ */
 	public Stock getLastStock() {
 		return stocks[portfolioSize - 1];
 	}

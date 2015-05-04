@@ -4,28 +4,44 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * An instance of this class represent a stock
+ * @author Chen Halak
+ * @JDK 1.7
+ * @ 5.3.2015
+ 
+ */
 public class Stock {
 	private String symbol;
 	private float ask, bid;
 	private Date date;
-
-	public Stock(Stock stock){
-		this(stock.symbol,stock.ask,stock.bid,stock.date);
-
-	}	
-
-
+/**
+ * @param stock-instance of the class Stock
+ * returns stock that same to the parameter stock
+ */
+	public Stock(Stock stock) {
+		this(new String(stock.getSymbol()), stock.getAsk(), stock.getBid(),
+				new Date(stock.getDate().getTime()));
+	}
+/**
+ * @param symbol-name of stock
+ * @param ask
+ * @param bid
+ * @param date
+ * returns instance of class Stock with the parameters
+ */
 	public Stock(String symbol, float ask, float bid, Date date) {
 		this.symbol = symbol;
 		this.ask = ask;
 		this.bid = bid;
 		this.date = date;
 	}
-
+/**
+ * returned is not simplified
+ * create istance of Stock
+ */
 	public Stock() {
 	}
-
 
 	public String getSymbol() {
 		return symbol;
@@ -68,7 +84,9 @@ public class Stock {
 		} catch (ParseException e) {
 		}
 	}
-
+/**
+ * returns details of stock that used in  html code
+ */
 	public String getHtmlDescription() {
 		DateFormat format = new SimpleDateFormat("MM/d/yyyy");
 		String stockDate = format.format(getDate());
