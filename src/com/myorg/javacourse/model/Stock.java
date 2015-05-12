@@ -4,43 +4,54 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMANDATION;
+
 /**
  * An instance of this class represent a stock
+ * 
  * @author Chen Halak
- * @JDK 1.7
- * @ 5.3.2015
- 
+ * @JDK 1.7 @ 5.3.2015
  */
 public class Stock {
 	private String symbol;
 	private float ask, bid;
 	private Date date;
-/**
- * @param stock-instance of the class Stock
- * returns stock that same to the parameter stock
- */
+	private ALGO_RECOMMANDATION recommendation;
+	private int stockQuantity;
+
+	/**
+	 * @param stock
+	 *            -instance of the class Stock returns stock that same to the
+	 *            parameter stock
+	 */
 	public Stock(Stock stock) {
 		this(new String(stock.getSymbol()), stock.getAsk(), stock.getBid(),
-				new Date(stock.getDate().getTime()));
+				new Date(stock.getDate().getTime()), stock.getRecommendation());
 	}
-/**
- * @param symbol-name of stock
- * @param ask
- * @param bid
- * @param date
- * returns instance of class Stock with the parameters
- */
-	public Stock(String symbol, float ask, float bid, Date date) {
+
+	/**
+	 * @param symbol
+	 *            -name of stock
+	 * @param ask
+	 * @param bid
+	 * @param date
+	 *            returns instance of class Stock with the parameters
+	 */
+	public Stock(String symbol, float ask, float bid, Date date,
+			ALGO_RECOMMANDATION recommandation) {
 		this.symbol = symbol;
 		this.ask = ask;
 		this.bid = bid;
 		this.date = date;
+		this.setRecommendation(recommandation);
 	}
-/**
- * returned is not simplified
- * create istance of Stock
- */
+
+	/**
+	 * returned is not simplified create istance of Stock
+	 */
 	public Stock() {
+		recommendation = ALGO_RECOMMANDATION.HOLD;
 	}
 
 	public String getSymbol() {
@@ -84,15 +95,32 @@ public class Stock {
 		} catch (ParseException e) {
 		}
 	}
-/**
- * returns details of stock that used in  html code
- */
+
+	/**
+	 * returns details of stock that used in html code
+	 */
 	public String getHtmlDescription() {
 		DateFormat format = new SimpleDateFormat("MM/d/yyyy");
 		String stockDate = format.format(getDate());
 		return "<b>Stocksymbol</b>:" + getSymbol() + ", <b>Ask</b>:" + getAsk()
 				+ ", <b>Bid</b>:" + getBid() + ", <b>Date</b>:" + stockDate
-				+ "<BR>";
+				+ ", <b>Quantity</b>:" + stockQuantity;
+	}
+
+	public ALGO_RECOMMANDATION getRecommendation() {
+		return recommendation;
+	}
+
+	public void setRecommendation(ALGO_RECOMMANDATION recommendation) {
+		this.recommendation = recommendation;
+	}
+
+	public int getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
 	}
 
 }

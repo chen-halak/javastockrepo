@@ -14,26 +14,37 @@ public class PortfolioManager {
 	 */
 	public Portfolio getPortfolio() {
 		Portfolio portfolio=new Portfolio();
-		portfolio.setTitle("Portpolio # 1");
+		portfolio.setTitle("Exercise 7 portfolio");
+		portfolio.updateBalance(10000);
 		Stock PIH = new Stock();
 		Stock AAL = new Stock();
 		Stock CAAS = new Stock();
 		PIH.setSymbol("PIH");
 		AAL.setSymbol("AAL");
 		CAAS.setSymbol("CAAS");
-		PIH.setAsk(13.1F);
-		AAL.setAsk(5.78F);
-		CAAS.setAsk(32.2F);
-		PIH.setBid(12.4F);
-		AAL.setBid(5.5F);
-		CAAS.setBid(31.5F);
+		PIH.setAsk(10.0F);
+		AAL.setAsk(30.0F);
+		CAAS.setAsk(20.0F);
+		PIH.setBid(8.5F);
+		AAL.setBid(25.5F);
+		CAAS.setBid(15.5F);
 
-		PIH.setDate("11/15/2014");
-		AAL.setDate("11/15/2014");
-		CAAS.setDate("11/15/2014");
+		PIH.setDate("12/15/2014");
+		AAL.setDate("12/15/2014");
+		CAAS.setDate("12/15/2014");
+
 		portfolio.addStock(PIH);
 		portfolio.addStock(AAL);
 		portfolio.addStock(CAAS);
+
+		portfolio.buyStock("PIH", 20);
+		portfolio.buyStock("AAL", 30);
+		portfolio.buyStock("CAAS", 40);
+		
+		portfolio.sellStock("AAL", -1);
+		
+		portfolio.removeStock("CAAS");
+		
 		return portfolio;
 	}
 }
