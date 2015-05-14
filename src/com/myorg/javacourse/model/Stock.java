@@ -21,9 +21,9 @@ public class Stock {
 	private int stockQuantity;
 
 	/**
-	 * @param stock
-	 *            -instance of the class Stock returns stock that same to the
-	 *            parameter stock
+	 * @param stock -instance of the class Stock 
+	 * returns stock that same to the parameter
+	 * 
 	 */
 	public Stock(Stock stock) {
 		this(new String(stock.getSymbol()), stock.getAsk(), stock.getBid(),
@@ -31,12 +31,11 @@ public class Stock {
 	}
 
 	/**
-	 * @param symbol
-	 *            -name of stock
-	 * @param ask
-	 * @param bid
+	 * @param symbol-name of stock
+	 * @param ask-the buying price
+	 * @param bid-the selling buying
 	 * @param date
-	 *            returns instance of class Stock with the parameters
+	 * returns instance of class Stock with the parameters
 	 */
 	public Stock(String symbol, float ask, float bid, Date date,
 			ALGO_RECOMMANDATION recommandation) {
@@ -48,7 +47,8 @@ public class Stock {
 	}
 
 	/**
-	 * returned is not simplified create istance of Stock
+	 * returned is not simplified 
+	 * create istance of Stock
 	 */
 	public Stock() {
 		recommendation = ALGO_RECOMMANDATION.HOLD;
@@ -95,18 +95,6 @@ public class Stock {
 		} catch (ParseException e) {
 		}
 	}
-
-	/**
-	 * returns details of stock that used in html code
-	 */
-	public String getHtmlDescription() {
-		DateFormat format = new SimpleDateFormat("MM/d/yyyy");
-		String stockDate = format.format(getDate());
-		return "<b>Stocksymbol</b>:" + getSymbol() + ", <b>Ask</b>:" + getAsk()
-				+ ", <b>Bid</b>:" + getBid() + ", <b>Date</b>:" + stockDate
-				+ ", <b>Quantity</b>:" + stockQuantity;
-	}
-
 	public ALGO_RECOMMANDATION getRecommendation() {
 		return recommendation;
 	}
@@ -122,5 +110,17 @@ public class Stock {
 	public void setStockQuantity(int stockQuantity) {
 		this.stockQuantity = stockQuantity;
 	}
+	/**
+	 * returns details of stock that used in html code
+	 */
+	public String getHtmlDescription() {
+		DateFormat format = new SimpleDateFormat("MM/d/yyyy");
+		String stockDate = format.format(getDate());
+		return "<b>Stocksymbol</b>:" + getSymbol() + ", <b>Ask</b>:" + getAsk()
+				+ ", <b>Bid</b>:" + getBid() + ", <b>Date</b>:" + stockDate
+				+ ", <b>Quantity</b>:" + stockQuantity;
+	}
+
+	
 
 }

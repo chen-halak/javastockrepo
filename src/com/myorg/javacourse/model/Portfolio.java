@@ -93,8 +93,7 @@ public class Portfolio {
 
 	/**
 	 * 
-	 * @param stock
-	 *            -the stock we want to check if it in portfolio
+	 * @param stock-the stock we want to check if it in portfolio
 	 * @return if the stock already in portfolio
 	 */
 	private boolean isStockInPortfolio(Stock stock) {
@@ -105,7 +104,9 @@ public class Portfolio {
 		}
 		return false;
 	}
-
+/**
+ * @return total value of stocks 
+ */
 	public float getStockValue() {
 		float result = 0;
 		for (int i = 0; i < portfolioSize; i++) {
@@ -113,27 +114,31 @@ public class Portfolio {
 		}
 		return result;
 	}
-
+/**
+ * @return value of balance
+ */
 	public float getBalance() {
 		return balance;
 	}
-
+/**
+ * @return total value of stocks and value of balance
+ */
 	public float getTotalValue() {
 		return getBalance() + getStockValue();
 	}
 
 	/**
-	 * add stock to the portfolio returned not simplified
-	 * 
-	 * @param stock
-	 *            the stock that added to the portfolio
+	 * add stock to the portfolio 
+	 * returned not simplified
+	 * @param stock -the stock we want to add to portfolio
+	 * @param isQuantityZero -say if quantity is equal to zero
 	 */
+	
 	private void addStock(Stock stock, boolean isQuantityZero) {
 		if (stock == null)
 			return;
 		if (stock.getSymbol() == null)
 			return;
-
 		boolean inPortfolio = isStockInPortfolio(stock);
 
 		if (inPortfolio == false && portfolioSize < MAX_PORTFOLIO_SIZE) {
@@ -148,14 +153,18 @@ public class Portfolio {
 
 		}
 	}
-
+/**
+ * returned is not simplified
+ *add stock to the portfolio 
+ */
 	public void addStock(Stock stock) {
 		addStock(stock, true);
 	}
-
-	/**
-	 * returned is not simplified remove the first stock from portfolio
-	 */
+/**
+ * remove stock from portfolio
+ * @param symbol of stock we want remove
+ * @return if stock was removed from portfolio
+ */
 	public boolean removeStock(String symbol) {
 		if (!sellStock(symbol, -1))
 			return false;
@@ -176,7 +185,11 @@ public class Portfolio {
 		return isSuccess;
 
 	}
+/**
 
+ * @param symbol-name of stock
+ * @return stock that the symbol is here name
+ */
 	private Stock findStock(String symbol) {
 
 		for (int i = 0; i < portfolioSize; i++) {
@@ -186,7 +199,12 @@ public class Portfolio {
 		}
 		return null;
 	}
-
+/**
+ * 
+ * @param symbol-name of stock
+ * @param quantity -the amount stock we went to sell
+ * @return if the selling was successful
+ */
 	public boolean sellStock(String symbol, int quantity) {
 		Stock stock = findStock(symbol);
 
@@ -210,7 +228,11 @@ public class Portfolio {
 
 		return true;
 	}
-
+	/**
+	 * @param symbol-name of stock
+	 * @param quantity -the amount stock we went to buy
+	 * @return if the buying was successful
+	 */
 	public boolean buyStock(String symbol, int quantity) {
 		Stock stock = findStock(symbol);
 
@@ -235,7 +257,8 @@ public class Portfolio {
 	}
 
 	/**
-	 * returned is not simplified remove the first stock from portfolio
+	 * returned is not simplified 
+	 * remove the first stock from portfolio
 	 */
 	public void removeFirstStock() {
 		Stock[] oldStocks = stocks;
@@ -278,7 +301,11 @@ public class Portfolio {
 	public Stock getLastStock() {
 		return stocks[portfolioSize - 1];
 	}
-
+/**
+ * add the amount to the current balance
+ * @param amount-how much to the add
+ * @return if the update done successfully
+ */
 	public boolean updateBalance(float amount) {
 		if (balance + amount >= 0) {
 			balance += amount;
