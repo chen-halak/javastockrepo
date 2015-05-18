@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.algo.model.StockInterface;
+
 import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMANDATION;
 
 /**
@@ -13,13 +15,23 @@ import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMANDATION;
  * @author Chen Halak
  * @JDK 1.7 @ 5.3.2015
  */
-public class Stock {
+public class Stock implements StockInterface {
 	private String symbol;
 	private float ask, bid;
 	private Date date;
 	private ALGO_RECOMMANDATION recommendation;
 	private int stockQuantity;
 
+	/**
+	 * @param stock -instance of the class Stock 
+	 * returns stock that same to the parameter
+	 * 
+	 */
+	public Stock(StockInterface stock) {
+		this(new String(stock.getSymbol()), stock.getAsk(), stock.getBid(),
+				new Date(stock.getDate().getTime()), ALGO_RECOMMANDATION.HOLD);
+	}
+	
 	/**
 	 * @param stock -instance of the class Stock 
 	 * returns stock that same to the parameter

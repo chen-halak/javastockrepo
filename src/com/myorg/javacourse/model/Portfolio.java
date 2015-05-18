@@ -1,11 +1,13 @@
 package com.myorg.javacourse.model;
 
+import org.algo.model.PortfolioInterface;
+
 /**
  * An instance of this class represent portfilo-manage stocks on one place
  * 
  * @author Chen Halak since JDK 1.7 4/23/15
  */
-public class Portfolio {
+public class Portfolio implements PortfolioInterface {
 
 	/**
 	 * the recommendation of stocks in the portpolio
