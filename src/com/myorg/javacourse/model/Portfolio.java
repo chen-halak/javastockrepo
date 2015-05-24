@@ -61,9 +61,8 @@ public class Portfolio implements PortfolioInterface {
 	}
 
 	/**
-	 * @param portfolio
-	 *            -copy this parameter returns instance of the same portfolio
-	 *            that given as parameter
+	 * @param portfolio -copy this parameter returns instance 
+	 * of the same portfolio that given as parameter
 	 */
 	public Portfolio(Portfolio portfolio) {
 		this(new String(portfolio.getTitle()), portfolio.getStocks(), portfolio

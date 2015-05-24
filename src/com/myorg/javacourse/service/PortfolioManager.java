@@ -33,7 +33,8 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	}
 
 	/**
-	 * 
+	 * create porfolio with data
+	 * returned not simplified
 	 */
 	private void init() {
 		portfolio = new Portfolio();
@@ -91,7 +92,9 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+/**
+ * add stock if it in nasdaq.
+ */
 	@Override
 	public void addStock(String symbol) throws PortfolioException {
 		try {
@@ -102,19 +105,25 @@ public class PortfolioManager implements PortfolioManagerInterface {
 
 		}
 	}
-
+/**
+ * buy stock with the required quantity
+ */
 	@Override
 	public void buyStock(String symbol, int quantity) throws PortfolioException {
 		portfolio.buyStock(symbol, quantity);
 	}
-
+/**
+ * sell stock with the given quantity
+ */
 	@Override
 	public void sellStock(String symbol, int quantity)
 			throws PortfolioException {
 		portfolio.sellStock(symbol, quantity);
 
 	}
-
+/**
+ * remove stock from portfolio
+ */
 	@Override
 	public void removeStock(String symbol) throws PortfolioException {
 		portfolio.removeStock(symbol);
