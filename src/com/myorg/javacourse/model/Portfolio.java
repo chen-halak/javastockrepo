@@ -12,7 +12,7 @@ public class Portfolio implements PortfolioInterface {
 	/**
 	 * the recommendation of stocks in the portpolio
 	 */
-	enum ALGO_RECOMMANDATION {
+	public enum ALGO_RECOMMANDATION {
 		BUY, SELL, REMOVE, HOLD
 	};
 
