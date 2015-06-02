@@ -10,6 +10,7 @@ import org.algo.service.DatastoreService;
 import org.algo.service.MarketService;
 import org.algo.service.PortfolioManagerInterface;
 
+import com.myorg.javacourse.exception.BalanceException;
 import com.myorg.javacourse.model.Stock;
 import com.myorg.javacourse.model.Portfolio;
 
@@ -19,8 +20,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
 
 import org.algo.model.StockInterface;
 
@@ -39,15 +38,20 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	 */
 	public PortfolioInterface getPortfolio() {
 		if (portfolio == null)
-			init();
-		
+			try {
+				init();
+			} catch (PortfolioException e) {
+			}
+
 		return portfolio;
 	}
 
 	/**
 	 * create porfolio with data returned not simplified
+	 * 
+	 * @throws PortfolioException
 	 */
-	private void init() {
+	private void init() throws PortfolioException {
 		portfolio = new Portfolio();
 		portfolio.setTitle("Exercise 8 portfolio");
 		portfolio.updateBalance(10000);
@@ -76,10 +80,13 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		portfolio.buyStock("GOOG", 30);
 		portfolio.buyStock("MRVC", 40);
 
+		portfolio.addStock(CAAS);//throw exception
+
 		portfolio.sellStock("AAL", -1);
 
 		portfolio.removeStock("CAAS");
 	}
+
 	/**
 	 * Update portfolio with stocks
 	 */
@@ -130,33 +137,35 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	/**
 	 * get portfolio totals
 	 */
-	public PortfolioTotalStatus[] getPortfolioTotalStatus () {
+	public PortfolioTotalStatus[] getPortfolioTotalStatus() {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 
 		datastoreService.updatePortfolio(toDto(portfolio));
 		Map<Date, Float> map = new HashMap<>();
 
-		//get stock status from db.
+		// get stock status from db.
 		StockInterface[] stocks = portfolio.getStocks();
 		for (int i = 0; i < stocks.length; i++) {
 			StockInterface stock = stocks[i];
 
-			if(stock != null) {
+			if (stock != null) {
 				List<StockDto> stockHistory = null;
 				try {
-					stockHistory = datastoreService.getStockHistory(stock.getSymbol(),30);
+					stockHistory = datastoreService.getStockHistory(
+							stock.getSymbol(), 30);
 				} catch (Exception e) {
 					return null;
 				}
 				for (StockDto stockDto : stockHistory) {
 					Stock stockStatus = fromDto(stockDto);
-					float value = stockStatus.getBid()*stockStatus.getStockQuantity();
+					float value = stockStatus.getBid()
+							* stockStatus.getStockQuantity();
 
 					Date date = stockStatus.getDate();
 					Float total = map.get(date);
-					if(total == null) {
+					if (total == null) {
 						total = value;
-					}else {
+					} else {
 						total += value;
 					}
 
@@ -168,19 +177,17 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		PortfolioTotalStatus[] ret = new PortfolioTotalStatus[map.size()];
 
 		int index = 0;
-		//create dto objects
+		// create dto objects
 		for (Date date : map.keySet()) {
 			ret[index] = new PortfolioTotalStatus(date, map.get(date));
 			index++;
 		}
 
-		//sort by date ascending.
+		// sort by date ascending.
 		Arrays.sort(ret);
 
 		return ret;
 	}
-
-
 
 	/**
 	 * add stock if it in nasdaq.
@@ -260,9 +267,10 @@ public class PortfolioManager implements PortfolioManagerInterface {
 
 		return ret;
 	}
-	
+
 	/**
 	 * toDto - covert Stock to Stock DTO
+	 * 
 	 * @param inStock
 	 * @return
 	 */
@@ -270,27 +278,30 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		if (inStock == null) {
 			return null;
 		}
-		
+
 		Stock stock = (Stock) inStock;
-		return new StockDto(stock.getSymbol(), stock.getAsk(), stock.getBid(), 
-				stock.getDate(), stock.getStockQuantity(), stock.getRecommendation().name());
+		return new StockDto(stock.getSymbol(), stock.getAsk(), stock.getBid(),
+				stock.getDate(), stock.getStockQuantity(), stock
+						.getRecommendation().name());
 	}
-	
+
 	/**
 	 * toDto - converts Portfolio to Portfolio DTO
+	 * 
 	 * @param portfolio
 	 * @return
 	 */
 	private PortfolioDto toDto(Portfolio portfolio) {
 		StockDto[] array = null;
 		StockInterface[] stocks = portfolio.getStocks();
-		if(stocks != null) {
+		if (stocks != null) {
 			array = new StockDto[stocks.length];
 			for (int i = 0; i < stocks.length; i++) {
 				array[i] = toDto(stocks[i]);
 			}
 		}
-		return new PortfolioDto(portfolio.getTitle(), portfolio.getBalance(), array);
+		return new PortfolioDto(portfolio.getTitle(), portfolio.getBalance(),
+				array);
 	}
 
 }
