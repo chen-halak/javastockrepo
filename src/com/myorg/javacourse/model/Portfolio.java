@@ -70,9 +70,8 @@ public class Portfolio implements PortfolioInterface {
 	}
 
 	/**
-	 * @param portfolio
-	 *            -copy this parameter returns instance of the same portfolio
-	 *            that given as parameter
+	 * @param portfolion-copy this parameter returns instance of the same portfolio
+	 *   that given as parameter
 	 * @throws PortfolioFullException
 	 * @throws StockAlreadyExistException
 	 */
@@ -106,9 +105,7 @@ public class Portfolio implements PortfolioInterface {
 	}
 
 	/**
-	 * 
-	 * @param stock
-	 *            -the stock we want to check if it in portfolio
+	 * @param stock -the stock we want to check if it in portfolio
 	 * @return if the stock already in portfolio
 	 */
 	private boolean isStockInPortfolio(Stock stock) {
@@ -148,10 +145,8 @@ public class Portfolio implements PortfolioInterface {
 	/**
 	 * add stock to the portfolio returned not simplified
 	 * 
-	 * @param stock
-	 *            -the stock we want to add to portfolio
-	 * @param isQuantityZero
-	 *            -say if quantity is equal to zero
+	 * @param stock -the stock we want to add to portfolio
+	 * @param isQuantityZero -say if quantity is equal to zero
 	 * @throws StockAlreadyExistException
 	 * @throws PortfolioFullException
 	 */
@@ -190,8 +185,7 @@ public class Portfolio implements PortfolioInterface {
 	/**
 	 * remove stock from portfolio
 	 * 
-	 * @param symbol
-	 *            of stock we want remove
+	 * @param symbol  of stock we want to remove
 	 * @return if stock was removed from portfolio
 	 * @throws PortfolioFullException
 	 * @throws StockAlreadyExistException
