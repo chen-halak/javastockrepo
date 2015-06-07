@@ -40,7 +40,23 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		if (portfolio == null)
 			try {
 				init();
-			} catch (PortfolioException e) {
+				/*try {
+					Thread.sleep(10000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
+				/*Stock CAAS = new Stock();
+				CAAS.setSymbol("MRVC");
+				CAAS.setAsk(20.0F);
+				CAAS.setBid(15.5F);
+				CAAS.setDate("12/13/2014");
+				datastoreService.updatePortfolio(toDto(portfolio));
+				portfolio.addStock(CAAS);//throw exception
+				datastoreService.updatePortfolio(toDto(portfolio));*/
+			
+			} 
+		catch (PortfolioException e) {
 			}
 
 		return portfolio;
@@ -53,7 +69,7 @@ public class PortfolioManager implements PortfolioManagerInterface {
 	 */
 	private void init() throws PortfolioException {
 		portfolio = new Portfolio();
-		portfolio.setTitle("Exercise 8 portfolio");
+		portfolio.setTitle("stock portfolio");
 		portfolio.updateBalance(10000);
 		Stock PIH = new Stock();
 		Stock AAL = new Stock();
@@ -77,14 +93,12 @@ public class PortfolioManager implements PortfolioManagerInterface {
 		portfolio.addStock(CAAS);
 
 		portfolio.buyStock("ABY", 20);
-		portfolio.buyStock("GOOG", 30);
+		portfolio.buyStock("GOOG", 30);	
 		portfolio.buyStock("MRVC", 40);
-
 		portfolio.addStock(CAAS);//throw exception
+		portfolio.sellStock("AAL", -1);//throw exception
 
-		portfolio.sellStock("AAL", -1);
-
-		portfolio.removeStock("CAAS");
+		portfolio.removeStock("CAAS");//throw exception
 	}
 
 	/**
